@@ -75,7 +75,8 @@ public class Teclat {
             // o ha fallat la conversió
             System.out.printf(e.getMessage()); // mostrar excepció
             System.exit(0); // aturar la màquina virtual
-            return(0); // Línia de codi inaccessible
+            return (0); // Línia de codi inaccessible
+
         }
     }
     // Mètode per llegir un enter de mida double
@@ -95,7 +96,11 @@ public class Teclat {
             System.out.printf(e.getMessage()); // mostrar excepció
             System.exit(0); // aturar la màquina virtual
             return(0); // Línia de codi inaccessible
-        }
+        } catch (NumberFormatException e) {
+        System.out.printf(e.getMessage());
+        System.exit(0);
+        return (0);
+    }
     }
     // Mètode per llegir un enter de mida double
     public static long llegirLong(String ... missatge) {

@@ -1,12 +1,20 @@
 package aplicacio;
 
 import classes.Adressa;
+import classes.Teclat;
 import eines.EinesJoan;
 import menu.Menu;
 import static eines.EinesJoan.pintaLinia;
 
 public class AppAgenda {
+
+    public static void afegirContacte(){
+        String nomContacte, cognomContacte;
+        nomContacte = Teclat.llegirCadena("Entra el nom del contacte");
+        cognomContacte = Teclat.llegirCadena("Entra el cognom del contacte");
+    }
     public static void main(String[] args) {
+
         String[] opcions = {
                 "Afegir Contacte",
                 "Buscar Contacte",
