@@ -1,19 +1,32 @@
 package aplicacio;
 
 import classes.Adressa;
+import classes.Agenda;
+import classes.Contacte;
 import classes.Teclat;
 import eines.EinesJoan;
 import menu.Menu;
 import static eines.EinesJoan.pintaLinia;
 
 public class AppAgenda {
+    static Agenda agenda = new Agenda();
+
+    public static void mostrarContactes(){
+        agenda.mostrarContactes();
+    }
 
     public static void afegirContacte(){
         String nomContacte, cognomContacte;
-        nomContacte = Teclat.llegirCadena("Entra el nom del contacte");
-        cognomContacte = Teclat.llegirCadena("Entra el cognom del contacte");
+        nomContacte = Teclat.llegirCadena("Entra el nom del contacte: ");
+        cognomContacte = Teclat.llegirCadena("Entra el cognom del contacte: ");
+        Contacte nouContacte = new Contacte(nomContacte, cognomContacte);
+        agenda.afegirContacte(nouContacte);
     }
+
+
     public static void main(String[] args) {
+
+
 
         String[] opcions = {
                 "Afegir Contacte",
@@ -30,7 +43,7 @@ public class AppAgenda {
                     "Escull una opció");
             switch (opcio) {
                 case 1:
-//                    afegirContacte();
+                    afegirContacte();
                     break;
                 case 2:
 //                    buscarContacte();
@@ -42,7 +55,7 @@ public class AppAgenda {
 //                    eliminarContacte();
                     break;
                 case 5:
-//                    mostrarContactes();
+                    mostrarContactes();
                     break;
                 case 6:
 //                    guardarAgenda(nomFitxerAmbAgenda);
