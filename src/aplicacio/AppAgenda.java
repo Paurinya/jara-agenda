@@ -6,6 +6,9 @@ import classes.Contacte;
 import classes.Teclat;
 import eines.EinesJoan;
 import menu.Menu;
+
+import java.util.Scanner;
+
 import static eines.EinesJoan.pintaLinia;
 
 public class AppAgenda {
@@ -13,6 +16,17 @@ public class AppAgenda {
 
     public static void mostrarContactes(){
         agenda.mostrarContactes();
+    }
+
+    public static void buscarContactes(){
+        String nomContacte, cognomContacte;
+        nomContacte = Teclat.llegirCadena("Entra el nom del contacte: ");
+        cognomContacte = Teclat.llegirCadena("Entra el cognom del contacte: ");
+        if (agenda.buscarContacte(nomContacte, cognomContacte)){
+            System.out.println("Contacte trobat");
+        } else {
+            System.out.println("Contacte no trobat");
+        };
     }
 
     public static void afegirContacte(){
@@ -23,6 +37,28 @@ public class AppAgenda {
         agenda.afegirContacte(nouContacte);
     }
 
+    public static void eliminarContacte(){
+        Scanner teclat = new Scanner(System.in);
+        String nomContacte, cognomContacte;
+        char resposta = 'N';
+
+        nomContacte = Teclat.llegirCadena("Entra el nom del contacte: ");
+        cognomContacte = Teclat.llegirCadena("Entra el cognom del contacte: ");
+        Contacte contacteAEsborrar = new Contacte(nomContacte, cognomContacte);
+
+        if (agenda.buscarContacte(nomContacte, cognomContacte)){
+            System.out.println("Estas segur d'eliminar el contacte (S/N): ");
+            resposta = teclat.next().charAt(0);
+            if((resposta == 'S') || (resposta == 's')){
+            agenda.eliminarContacte(contacteAEsborrar);
+            System.out.println("Contacte eliminat correctament!");
+        } else {
+            System.out.println("Contacte no trobat");
+        };
+    }
+
+
+    }
 
     public static void main(String[] args) {
 
@@ -46,13 +82,13 @@ public class AppAgenda {
                     afegirContacte();
                     break;
                 case 2:
-//                    buscarContacte();
+                    buscarContactes();
                     break;
                 case 3:
 //                    modificarContacte();
                     break;
                 case 4:
-//                    eliminarContacte();
+                    eliminarContacte();
                     break;
                 case 5:
                     mostrarContactes();
