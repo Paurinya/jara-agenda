@@ -59,6 +59,17 @@ public class Agenda {
 
     }
 
+    public void modificarContacte(String nom, String cognom, Contacte contacteModificat) {
+        for (int i = 0; i < llistaContactes.size(); i++) {
+            Contacte contacte = llistaContactes.get(i);
+            if (contacte.getNom().equals(nom) && contacte.getCognom().equals(cognom)) {
+                llistaContactes.set(i, contacteModificat);
+                return;
+            }
+        }
+        System.out.println("No s'ha pogut modificar el contacte perquè no existeix.");
+    }
+
 
     public void mostrarContactes() {
         if (llistaContactes.size() == 0) {

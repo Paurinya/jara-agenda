@@ -18,6 +18,27 @@ public class AppAgenda {
         agenda.mostrarContactes();
     }
 
+    public static void modificarContacte() {
+        String nomContacte, cognomContacte;
+        nomContacte = Teclat.llegirCadena("Entra el nom del contacte a modificar: ");
+        cognomContacte = Teclat.llegirCadena("Entra el cognom del contacte a modificar: ");
+
+        if (agenda.buscarContacte(nomContacte, cognomContacte)) {
+
+            String nouNom = Teclat.llegirCadena("Entra el nou nom: ");
+            String nouCognom = Teclat.llegirCadena("Entra el nou cognom: ");
+
+            Contacte contacteModificat = new Contacte(nouNom, nouCognom);
+
+            agenda.modificarContacte(nomContacte, cognomContacte, contacteModificat);
+
+            System.out.println("Contacte modificat correctament.");
+        } else {
+            System.out.println("Contacte no trobat.");
+        }
+    }
+
+
     public static void buscarContactes(){
         String nomContacte, cognomContacte;
         nomContacte = Teclat.llegirCadena("Entra el nom del contacte: ");
@@ -85,7 +106,7 @@ public class AppAgenda {
                     buscarContactes();
                     break;
                 case 3:
-//                    modificarContacte();
+                    modificarContacte();
                     break;
                 case 4:
                     eliminarContacte();
