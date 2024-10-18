@@ -29,30 +29,29 @@ public class Agenda {
         existeixElContacte = this.buscarContacte(nomContacte, cognomContacte);
         if (existeixElContacte) {
 
-            System.out.println("Contacte amb nom "+contacte.getNom()+"ja existeix a la agenda");
+            System.out.println("El contacte "+contacte.getNom()+"ja existeix a la agenda");
 
         }else {
 
             this.llistaContactes.addLast(contacte);
-            System.out.println("Contacte amb nom " + contacte.getNom() + " Contacte afegit correctament");
+            System.out.println("El contacte " + contacte.getNom() + " esta afegit correctament");
         }
     }
 
-    public boolean buscarContacte(String nomContacteABuscar, String cognomContacteABuscar) {
-        boolean trobat = false;
-        if (llistaContactes.size() == 0) {
-            trobat = false;
-        } else  {
-            for (int i = 0; i<this.getLlistaContactes().size(); i++) {
-                if ((this.llistaContactes.get(i).getNom().toLowerCase().equals(nomContacteABuscar) &&
-                        (this.llistaContactes.get(i).getCognom().toLowerCase().equals(cognomContacteABuscar)))) {
-                    trobat = true;
-                }
+    public boolean buscarContacte(String nom, String cognom) {
+        // Convierte el nombre y el cognom ingresados a minúsculas
+        String nomMin = nom.toLowerCase();
+        String cognomMin = cognom.toLowerCase();
+
+        for (Contacte contacte : llistaContactes) {
+            // Compara los nombres y apellidos en minúsculas
+            if (contacte.getNom().toLowerCase().equals(nomMin) && contacte.getCognom().toLowerCase().equals(cognomMin)) {
+                return true; // Contacto encontrado
             }
         }
-        return trobat;
-
+        return false; // Contacto no encontrado
     }
+
 
     public void eliminarContacte(Contacte contacte) {
         this.llistaContactes.remove(contacte);
@@ -60,15 +59,22 @@ public class Agenda {
     }
 
     public void modificarContacte(String nom, String cognom, Contacte contacteModificat) {
+        // Convierte el nombre y el cognom ingresados a minúsculas
+        String nomMin = nom.toLowerCase();
+        String cognomMin = cognom.toLowerCase();
+
         for (int i = 0; i < llistaContactes.size(); i++) {
             Contacte contacte = llistaContactes.get(i);
-            if (contacte.getNom().equals(nom) && contacte.getCognom().equals(cognom)) {
+            // Compara los nombres y apellidos en minúsculas
+            if (contacte.getNom().toLowerCase().equals(nomMin) && contacte.getCognom().toLowerCase().equals(cognomMin)) {
+                // Reemplaza el contacto existente con el modificado
                 llistaContactes.set(i, contacteModificat);
                 return;
             }
         }
         System.out.println("No s'ha pogut modificar el contacte perquè no existeix.");
     }
+
 
 
     public void mostrarContactes() {

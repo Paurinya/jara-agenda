@@ -54,6 +54,7 @@ public class AppAgenda {
         String nomContacte, cognomContacte;
         nomContacte = Teclat.llegirCadena("Entra el nom del contacte: ");
         cognomContacte = Teclat.llegirCadena("Entra el cognom del contacte: ");
+
         Contacte nouContacte = new Contacte(nomContacte, cognomContacte);
         agenda.afegirContacte(nouContacte);
     }
